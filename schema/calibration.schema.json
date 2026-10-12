@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "units calibration",
+  "description": "calibration.json: what one recipe measured at its starting commit. The first nine properties are the calibration itself; the rest record where and when it was measured.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["recipe_id", "runs", "stable", "known_failures", "quarantined", "metrics", "median_eval_seconds"],
+  "properties": {
+    "recipe_id": { "type": "string", "pattern": "^[0-9a-f]{64}$", "description": "The recipe this calibration belongs to. A changed recipe, image or harness is another recipe." },
+    "snapshot_id": { "type": "string", "pattern": "^([0-9a-f]{64})?$" },
+    "runs": { "type": "integer", "minimum": 1, "description": "How many times the test suite ran." },
+    "stable": { "type": "array", "uniqueItems": true, "items": { "type": "string" }, "description": "Tests that passed every run. A candidate must keep all of them passing." },
+    "known_failures": { "type": "array", "uniqueItems": true, "items": { "type": "string" }, "description": "Tests that failed every run. A fix candidate can target them." },
+    "quarantined": { "type": "array", "uniqueItems": true, "items": { "type": "string" }, "description": "Tests that passed some runs and failed others. Never counted." },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["enabled", "cv"],
+        "properties": {
+          "enabled": { "type": "boolean", "description": "false: too noisy to resolve the metric's min_effect, or its command failed." },
+          "cv": { "type": "number", "minimum": 0, "description": "Coefficient of variation measured at calibration." },
+          "base_value": { "type": "number", "description": "The metric at the starting commit, with the calibration seed." },
+          "reason": { "type": "string" }
+        }
+      }
+    },
+    "median_eval_seconds": { "type": "number", "minimum": 0 },
+    "seed": { "type": "string", "pattern": "^[0-9a-f]+$", "description": "The seed the calibration measured with." },
+    "recipe_name": { "type": "string" },
+    "repo": { "type": "string" },
+    "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "deps_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "image_digest": { "type": "string", "pattern": "^sha256:[0-9a-f]{64}$", "description": "The image the calibration actually ran on." },
+    "date": { "type": "string" },
+    "calibration_wall_seconds": { "type": "number", "minimum": 0 },
+    "counts": { "type": "object" },
+    "notes": { "type": "array", "items": { "type": "string" } },
+    "source": { "type": "string" },
+    "proposal_id": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "units recipe",
+  "description": "recipe.yml, parsed. A recipe makes one repository measurable: how to build it, test it and measure it, and what a patch may touch. scripts/validate.ts checks every recipe against this file and then applies the rules a schema cannot express.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["name", "class", "requires", "repo", "commit", "image", "workdir", "prepare", "build", "test", "metrics", "patch", "limits"],
+  "properties": {
+    "name": { "type": "string", "pattern": "^[a-z0-9][a-z0-9-]*$", "description": "Lowercase kebab name, equal to the directory name." },
+    "class": { "enum": ["rust", "solana", "zig", "cuda", "python", "go", "cpp"], "description": "Target class: names the toolchain image and the kind of metric." },
+    "requires": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arch"],
+      "description": "Hardware a verifier needs to replay this recipe.",
+      "properties": {
+        "arch": { "enum": ["amd64", "arm64"] },
+        "gpu": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["vendor", "sm"],
+          "properties": {
+            "vendor": { "const": "nvidia" },
+            "sm": { "type": "string", "pattern": "^\\d+\\.\\d+$", "description": "CUDA compute capability, for example 8.9." },
+            "min_mem_gb": { "type": "number", "exclusiveMinimum": 0 }
+          }
+        },
+        "min_cpus": { "type": "integer", "minimum": 1 },
+        "min_memory_mb": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "repo": { "type": "string", "pattern": "^https://", "description": "The public repository the unit improves." },
+    "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$", "description": "The full commit the unit starts from." },
+    "image": { "type": "string", "pattern": "^lineage/[a-z0-9-]+:[A-Za-z0-9._-]+@sha256:[0-9a-f]{64}$", "description": "The toolchain image, pinned by id. Never a tag alone." },
+    "workdir": { "const": "/work/src" },
+    "prepare": { "type": "array", "items": { "type": "string", "minLength": 1 }, "description": "Commands that run once WITH network. Their output under /deps becomes the dependency layer." },
+    "prepare_outputs": { "type": "array", "items": { "type": "string", "pattern": "^(?!/)(?!.*(^|/)\\.{1,2}(/|$)).+$" }, "description": "Files prepare generates that every tree needs. Relative paths, no . or .. segments." },
+    "build": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commands"],
+      "properties": {
+        "commands": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 }, "description": "Run with NO network." },
+        "artifacts": { "type": "array", "items": { "type": "string" }, "description": "Globs of build outputs whose digest is compared when reproducible is true." },
+        "reproducible": { "type": "boolean" }
+      }
+    },
+    "test": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "parser", "timeout_s"],
+      "properties": {
+        "command": { "type": "string", "minLength": 1 },
+        "parser": { "enum": ["libtest", "junit", "tap"] },
+        "exclude": { "type": "array", "items": { "type": "string" }, "description": "Test ids that need network or hardware: never counted, never targets." },
+        "timeout_s": { "type": "integer", "minimum": 1 }
+      }
+    },
+    "equivalence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["command", "output"],
+      "description": "A program that prints the library's outputs for many seeded inputs. The digest must be the same before and after a speed or size change.",
+      "properties": {
+        "command": { "type": "string", "minLength": 1 },
+        "output": { "const": "stdout-digest" }
+      }
+    },
+    "metrics": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "kind", "direction", "deterministic", "command", "parser", "min_effect"],
+        "properties": {
+          "name": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "kind": { "enum": ["perf", "slim"], "description": "perf: a speed metric. slim: a size metric." },
+          "direction": { "enum": ["lower", "higher"] },
+          "deterministic": { "type": "boolean", "description": "true: an exact count (instructions, compute units, bytes). false: a noisy measurement such as wall-clock time." },
+          "command": { "type": "string", "minLength": 1 },
+          "parser": { "type": "string", "pattern": "^(cachegrind-ir|number|bytes|ncu-inst(:.+)?)$" },
+          "holdout": { "type": "boolean", "description": "Replayers measure with a seed the author never saw." },
+          "min_effect": { "type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1, "description": "Relative improvement a candidate must show on this metric, as a fraction." },
+          "rounds": { "type": "integer", "minimum": 1, "description": "Interleaved base and candidate pairs of a noisy metric. At least 5." },
+          "tolerance": { "type": "number", "minimum": 0, "exclusiveMaximum": 1, "description": "Relative tolerance for agreement between replays on a deterministic metric. 0 means exact." }
+        }
+      }
+    },
+    "patch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_paths", "protected_paths", "max_files", "max_lines"],
+      "properties": {
+        "allowed_paths": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } },
+        "protected_paths": { "type": "array", "items": { "type": "string", "minLength": 1 }, "description": "Never patchable, even when also allowed. Overlay files are always protected." },
+        "protected_blocks": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["glob", "start"],
+            "properties": { "glob": { "type": "string" }, "start": { "type": "string", "description": "A regular expression. The block starts at a matching line and ends where its braces balance." } }
+          }
+        },
+        "max_files": { "type": "integer", "minimum": 1 },
+        "max_lines": { "type": "integer", "minimum": 1, "description": "Added plus removed lines." }
+      }
+    },
+    "limits": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cpus", "memory_mb", "pids", "wall_s", "disk_mb"],
+      "properties": {
+        "cpus": { "type": "number", "exclusiveMinimum": 0 },
+        "memory_mb": { "type": "integer", "minimum": 256 },
+        "pids": { "type": "integer", "minimum": 64 },
+        "wall_s": { "type": "integer", "minimum": 1 },
+        "disk_mb": { "type": "integer", "minimum": 1 }
+      }
+    }
+  }
+}

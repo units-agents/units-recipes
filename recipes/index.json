@@ -1,0 +1,1863 @@
+{
+  "recipes": [
+    {
+      "name": "base58-py",
+      "class": "python",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/keis/base58",
+      "commit": "2fae7065e3446e69e5d748c767011f05eee8400e",
+      "image": "lineage/python:m1@sha256:4214b1a6fb3757b7d706ce9547e728b18c53df40f0bdf8ebcdef5b81335186d0",
+      "recipe_id": "2e3eca8be8cf976cd2e94d09e0ca3b621927fd0166f8e124a6f81e4484856788",
+      "overlay_digest": "162a36f1b8b78796b84e7741e4192eed4d65d1859c0d28dcea0c9302c3ce84a1",
+      "overlay_files": 2,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "check_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "base58/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 900,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "2e3eca8be8cf976cd2e94d09e0ca3b621927fd0166f8e124a6f81e4484856788",
+          "runs": 5,
+          "stable": 48,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "d8d4daba3946c56307132a81812f18ecaf374566247e49903b99c89ceca3a41f",
+          "runs": 5,
+          "stable": 48,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "base58-py-heavy",
+      "class": "python",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/keis/base58",
+      "commit": "2fae7065e3446e69e5d748c767011f05eee8400e",
+      "image": "lineage/python:m1@sha256:4214b1a6fb3757b7d706ce9547e728b18c53df40f0bdf8ebcdef5b81335186d0",
+      "recipe_id": "a22c9c1739997af89873aa7ebe72bb1a22e042b429a4c7709966ecc990dd98b1",
+      "overlay_digest": "45e8aa6b1f9060b029539431b2d6ae70566d0b8b8c1ae634395e1bc062adfe95",
+      "overlay_files": 2,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "encode_long_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_long_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "check_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "int_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "base58/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 1800,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "a22c9c1739997af89873aa7ebe72bb1a22e042b429a4c7709966ecc990dd98b1",
+          "runs": 5,
+          "stable": 48,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 6,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "9394c130bb06cdefb8d6cfd8f3853698ccad044a19a343153d43f355e12f232f",
+          "runs": 5,
+          "stable": 48,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 6,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "base58-rs",
+      "class": "rust",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/debris/base58",
+      "commit": "72795451f9261c8b543bb6ce59117ba069497fdb",
+      "image": "lineage/rust:m1@sha256:ad2f9ba06cb62446a4a2015ffac9e90f877dbd0c7e10aa2c2976240e68d0a626",
+      "recipe_id": "b57c6f0a68a4db4ca54154c16d520e3169820524904cfb09b2cd5ec49bedc2da",
+      "overlay_digest": "6aead39020122e6771cb9c32bcb65d906f120be87c43b31ee0172f7907853f7e",
+      "overlay_files": 4,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "src/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 900,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "b57c6f0a68a4db4ca54154c16d520e3169820524904cfb09b2cd5ec49bedc2da",
+          "runs": 5,
+          "stable": 10,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "4e4fd8cf48a972500fa7e112e92972669f21d222ed4cbe525e9f4d9862ca6fca",
+          "runs": 5,
+          "stable": 10,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "bech32-py",
+      "class": "python",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/sipa/bech32",
+      "commit": "7a7d7ab158db7078a333384e0e918c90dbc42917",
+      "image": "lineage/python:m1@sha256:4214b1a6fb3757b7d706ce9547e728b18c53df40f0bdf8ebcdef5b81335186d0",
+      "recipe_id": "67274b5f961896d9f03078cebffe1564db9d4032c5408bbefc20308ee3af7208",
+      "overlay_digest": "2a62949738530a78ce778fdbb06a3025a912a73578dc87f7cff908faba32e3e9",
+      "overlay_files": 2,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "bech32_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "ref/python/segwit_addr.py"
+        ],
+        "max_files": 2,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 900,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "67274b5f961896d9f03078cebffe1564db9d4032c5408bbefc20308ee3af7208",
+          "runs": 6,
+          "stable": 5,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "bip39-go",
+      "class": "go",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/cosmos/go-bip39",
+      "commit": "3027fe585f89a39da9b7389bd4e3482e056f6d3f",
+      "image": "lineage/go:1.26.8@sha256:7f90f7bb53ceec9f7b62ed14867b6439c7020fa8439ff5ea4daf891a84069838",
+      "recipe_id": "24fb49a2a7765bdbd9e81bba62a997d911a0f1fdd6e8231102b1d693002e23ea",
+      "overlay_digest": "bbb81af27c5d4acc5c4885b07b184c3353c8a6541f1bec016a624fb567086b7b",
+      "overlay_files": 4,
+      "metrics": [
+        {
+          "name": "mnemonic_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "entropy_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "valid_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "bip39.go",
+          "wordlist.go"
+        ],
+        "max_files": 2,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 512,
+        "wall_s": 1200,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "24fb49a2a7765bdbd9e81bba62a997d911a0f1fdd6e8231102b1d693002e23ea",
+          "runs": 5,
+          "stable": 5,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "666ec10222d3743415b37bb292bc7076c3d658073608cfb5edf94fdd2c07b529",
+          "runs": 5,
+          "stable": 5,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": {
+        "replace": false,
+        "overlay_files": 1
+      }
+    },
+    {
+      "name": "bip39-py",
+      "class": "python",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/trezor/python-mnemonic",
+      "commit": "b57a5ad77a981e743f4167ab2f7927a55c1e82a8",
+      "image": "lineage/python:m1@sha256:4214b1a6fb3757b7d706ce9547e728b18c53df40f0bdf8ebcdef5b81335186d0",
+      "recipe_id": "34eb97a0b91094969a94264f9efc914ba9b67d03b83f065d5c1af61baa48d30a",
+      "overlay_digest": "62fd4641333131d3fe680f876dd0940b26dc0d00222f110b1ca0025164466561",
+      "overlay_files": 2,
+      "metrics": [
+        {
+          "name": "entropy_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "check_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "mnemonic_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "expand_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "src/mnemonic/mnemonic.py",
+          "src/mnemonic/__init__.py"
+        ],
+        "max_files": 2,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 900,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "34eb97a0b91094969a94264f9efc914ba9b67d03b83f065d5c1af61baa48d30a",
+          "runs": 5,
+          "stable": 7,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 4,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "2b2862d457d79669c9eafe1a5684d6f15fa5167c0d27cfdebf7f9f2c861cea8b",
+          "runs": 5,
+          "stable": 7,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 4,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "bitcoin-base58",
+      "class": "cpp",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/bitcoin/bitcoin",
+      "commit": "9dfde64cc3262329051fd05fffe40eecc786a99f",
+      "image": "lineage/cpp:gcc14@sha256:979cc232edde058027ea3cd1b6a0b8615a32286f48f3941afba7a3261f4adc9c",
+      "recipe_id": "652b24d31d596adb9a498c7a9c89109a4b9eba80089749bd5f5e7e9a3136bb76",
+      "overlay_digest": "9b3172fe4d38eb3c5b744dab5281ffca47cfe016edeec9e6cd8baf8117195c48",
+      "overlay_files": 10,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "check_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "src/base58.cpp",
+          "src/base58.h"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 1200,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "652b24d31d596adb9a498c7a9c89109a4b9eba80089749bd5f5e7e9a3136bb76",
+          "runs": 5,
+          "stable": 7,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "238d5f005231345b5a5dac03f168d7dbff689d189ce451d378fc4d933e48da68",
+          "runs": 5,
+          "stable": 7,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": {
+        "replace": false,
+        "overlay_files": 1
+      }
+    },
+    {
+      "name": "btcd-bech32",
+      "class": "go",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/btcsuite/btcd",
+      "commit": "b48125d0a3565b1441522ee10422f7815db03216",
+      "image": "lineage/go:1.26.8@sha256:7f90f7bb53ceec9f7b62ed14867b6439c7020fa8439ff5ea4daf891a84069838",
+      "recipe_id": "f0cf4ab50711fbc337a92661141ca7de39f777ba775ff6abf701854776ff0625",
+      "overlay_digest": "9dc3f6e4d2284281fd840f9c6b5af4a870d2835143fe723155c4e15f1a96c5f8",
+      "overlay_files": 4,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "convert_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "address/bech32/bech32.go",
+          "address/bech32/error.go",
+          "address/bech32/version.go"
+        ],
+        "max_files": 3,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 512,
+        "wall_s": 1200,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "f0cf4ab50711fbc337a92661141ca7de39f777ba775ff6abf701854776ff0625",
+          "runs": 5,
+          "stable": 10,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "e3ca78c4eb9d38fc631d8a1bcf8dba4e1bbf8e549153e16c0293742155a4850c",
+          "runs": 5,
+          "stable": 10,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": {
+        "replace": false,
+        "overlay_files": 1
+      }
+    },
+    {
+      "name": "geth-rlp",
+      "class": "go",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/ethereum/go-ethereum",
+      "commit": "0b468a86b90a6563c3725e9871d7cea8581eb1b2",
+      "image": "lineage/go:1.26.8@sha256:7f90f7bb53ceec9f7b62ed14867b6439c7020fa8439ff5ea4daf891a84069838",
+      "recipe_id": "6f960627f5039145a977e44d5f022284234c25481dd20736d4efe0da464efaaf",
+      "overlay_digest": "bcf42eaeedc13f06eeae000946f74fdfcff77649eaa44345ea8a102c92d6182f",
+      "overlay_files": 5,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "stream_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "rlp/*.go",
+          "rlp/internal/rlpstruct/*.go"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 3072,
+        "pids": 512,
+        "wall_s": 1800,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "6f960627f5039145a977e44d5f022284234c25481dd20736d4efe0da464efaaf",
+          "runs": 5,
+          "stable": 108,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "6b3484b89dd34fc99e548f021912d0a1c406e1cd553227fc2ae54f8141e84957",
+          "runs": 5,
+          "stable": 108,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": {
+        "replace": false,
+        "overlay_files": 1
+      }
+    },
+    {
+      "name": "hmac-sha256-rs",
+      "class": "rust",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/jedisct1/rust-hmac-sha256",
+      "commit": "3f2ad8a97d4d0e46a6eaf7d3323f25aef6d095bd",
+      "image": "lineage/rust:m1@sha256:ad2f9ba06cb62446a4a2015ffac9e90f877dbd0c7e10aa2c2976240e68d0a626",
+      "recipe_id": "1d78dde96e78eb7882547fe8bf1074e364e1736c8177a45844157987fd377332",
+      "overlay_digest": "a23d0e8f59a9973f214e0f82b5d037063410288a1a977aa3d9f7f4eae6e34636",
+      "overlay_files": 6,
+      "metrics": [
+        {
+          "name": "hash_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "hmac_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "hkdf_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "src/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 900,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "1d78dde96e78eb7882547fe8bf1074e364e1736c8177a45844157987fd377332",
+          "runs": 5,
+          "stable": 7,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "17eed3884a67ec5d06a90aa1b95a17940e3a83ab29f0d1ed6d141140a1752418",
+          "runs": 5,
+          "stable": 7,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "lc-text-splitters",
+      "class": "python",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/langchain-ai/langchain",
+      "commit": "4db8c0e8359dc9789669af140e9c2728718566f8",
+      "image": "lineage/python:m1@sha256:4214b1a6fb3757b7d706ce9547e728b18c53df40f0bdf8ebcdef5b81335186d0",
+      "recipe_id": "8752c2d2cb745dd84ef02d3f8f174544eb6ba48c2c5138717ecf08e33132f585",
+      "overlay_digest": "ac02cd7f76413ffb451e9f98c883273afef91c62323f92a1b46fec57647243f1",
+      "overlay_files": 3,
+      "metrics": [
+        {
+          "name": "recursive_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "code_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "markdown_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "libs/text-splitters/langchain_text_splitters/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 3072,
+        "pids": 256,
+        "wall_s": 1800,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "8752c2d2cb745dd84ef02d3f8f174544eb6ba48c2c5138717ecf08e33132f585",
+          "runs": 5,
+          "stable": 159,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "97d998999b889cfe1ca392645b585f0e1317b5627e57500888a153571e8f4e56",
+          "runs": 5,
+          "stable": 159,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "llama2c",
+      "class": "cpp",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/karpathy/llama2.c",
+      "commit": "350e04fe35433e6d2941dce5a1f53308f87058eb",
+      "image": "lineage/cpp:gcc14@sha256:979cc232edde058027ea3cd1b6a0b8615a32286f48f3941afba7a3261f4adc9c",
+      "recipe_id": "1957fae0fb5f3b951e543dfac1ea62547b1ca4cfab7363351c62bf1a170e7898",
+      "overlay_digest": "27437657f56c9c5d1686d31d3c881a941937c4258dab97683e58ec04400e9553",
+      "overlay_files": 8,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "forward_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "run.c"
+        ],
+        "max_files": 1,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 900,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "1957fae0fb5f3b951e543dfac1ea62547b1ca4cfab7363351c62bf1a170e7898",
+          "runs": 5,
+          "stable": 9,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "94896c0ef2132de67b6ee1b416d2db8fee81cc71ee0def12e427be4758ffa33b",
+          "runs": 5,
+          "stable": 9,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "llmc-cuda",
+      "class": "cuda",
+      "requires": {
+        "arch": "amd64",
+        "gpu": {
+          "vendor": "nvidia",
+          "sm": "8.9"
+        }
+      },
+      "repo": "https://github.com/karpathy/llm.c",
+      "commit": "f1e2ace651495b74ae22d45d1723443fd00ecd3a",
+      "image": "lineage/cuda:m1@sha256:4f440a3ca551ebdeb52aecf6ce34283af257d8f5d31329493c9b8e3d4a9dd715",
+      "recipe_id": "0b734b874f70beb0bc8bbc5055d5ab1d7fffcd56125b74fec5f93b91e0a96a95",
+      "overlay_digest": "651a0312609b60f02e97a1050b69e2bfd006c056f188c493af9f888d951c32da",
+      "overlay_files": 1,
+      "metrics": [
+        {
+          "name": "layernorm_fwd_inst",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "ncu-inst"
+        },
+        {
+          "name": "fused_residual_fwd_inst",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "ncu-inst"
+        },
+        {
+          "name": "encoder_fwd_inst",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "ncu-inst"
+        },
+        {
+          "name": "gelu_fwd_inst",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "ncu-inst"
+        },
+        {
+          "name": "gelu_bwd_inst",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "ncu-inst"
+        },
+        {
+          "name": "layernorm_fwd_us",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": false,
+          "min_effect": 0.05,
+          "holdout": false,
+          "parser": "number"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "llmc/encoder.cuh",
+          "llmc/layernorm.cuh",
+          "llmc/gelu.cuh"
+        ],
+        "max_files": 3,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 6144,
+        "pids": 256,
+        "wall_s": 1500,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "amd64": {
+          "file": "calibration.json",
+          "recipe_id": "0b734b874f70beb0bc8bbc5055d5ab1d7fffcd56125b74fec5f93b91e0a96a95",
+          "runs": 5,
+          "stable": 16,
+          "known_failures": 1,
+          "quarantined": 0,
+          "metrics_enabled": 6,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "md5-rs",
+      "class": "rust",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/stainless-steel/md5",
+      "commit": "e1ad96d3b6eda6a6e51e524e994d01d77fe412a2",
+      "image": "lineage/rust:m1@sha256:ad2f9ba06cb62446a4a2015ffac9e90f877dbd0c7e10aa2c2976240e68d0a626",
+      "recipe_id": "d6f2bc9c0074c747a8ee9cc847bd60d284acfae6e3438e13f44929481b1a2156",
+      "overlay_digest": "4ad47a36c3020b3c71f28dd5772f827bd3ea527a52c996afb4f6132f312fd722",
+      "overlay_files": 5,
+      "metrics": [
+        {
+          "name": "hash_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "hex_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "src/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 3072,
+        "pids": 256,
+        "wall_s": 1200,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "d6f2bc9c0074c747a8ee9cc847bd60d284acfae6e3438e13f44929481b1a2156",
+          "runs": 5,
+          "stable": 13,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "1b95fe6709b95a0812cfae8965903ab80f8a281a7a4392fb09491caa18ca3080",
+          "runs": 5,
+          "stable": 13,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "minbpe",
+      "class": "python",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/karpathy/minbpe",
+      "commit": "1acefe89412b20245db5a22d2a02001e547dc602",
+      "image": "lineage/python:m1@sha256:4214b1a6fb3757b7d706ce9547e728b18c53df40f0bdf8ebcdef5b81335186d0",
+      "recipe_id": "f870e074256f32a4af1969f421b3e430d71dea19b6849529f4dc6f7ab9665782",
+      "overlay_digest": "6b333f5bc6b8422c74c142e01b024afb9d379fd97524fd75fd6c0aa17c7be89d",
+      "overlay_files": 3,
+      "metrics": [
+        {
+          "name": "train_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "minbpe/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 1200,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "f870e074256f32a4af1969f421b3e430d71dea19b6849529f4dc6f7ab9665782",
+          "runs": 5,
+          "stable": 21,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "46a0d78dd189aa96c32d8f87402f2288b375c0934af32d036350034feb51f648",
+          "runs": 5,
+          "stable": 21,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "minbpe-heavy",
+      "class": "python",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/karpathy/minbpe",
+      "commit": "1acefe89412b20245db5a22d2a02001e547dc602",
+      "image": "lineage/python:m1@sha256:4214b1a6fb3757b7d706ce9547e728b18c53df40f0bdf8ebcdef5b81335186d0",
+      "recipe_id": "6464c976c287a381bc4b27da8a5599a061275032824210ca51538924c7cab884",
+      "overlay_digest": "09c83711de42ffcb9399a5706e16bd940b9b351b42dde1d0454fceb2f4b3e8e9",
+      "overlay_files": 3,
+      "metrics": [
+        {
+          "name": "train_basic_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "train_regex_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "save_load_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "minbpe/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 1800,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "6464c976c287a381bc4b27da8a5599a061275032824210ca51538924c7cab884",
+          "runs": 5,
+          "stable": 21,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 5,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "fb2924fcdae9d18ee10bf673be7e3c28082ee4b6db451980d7b891c135ef355e",
+          "runs": 5,
+          "stable": 21,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 5,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "ollama-tokenizer",
+      "class": "go",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/ollama/ollama",
+      "commit": "468e7e500842f7d17cf2ff47b80f454d6ca2949c",
+      "image": "lineage/go:1.26.8@sha256:7f90f7bb53ceec9f7b62ed14867b6439c7020fa8439ff5ea4daf891a84069838",
+      "recipe_id": "72bc32d2af5498f9035124fb64a77df317640c29536244b8725634c858037c09",
+      "overlay_digest": "b38d7124f6b9e40d3a907a8dbee1cd12e7b9f53572687bcf8bafc506d69d02e1",
+      "overlay_files": 5,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "mlxrunner/tokenizer/*.go"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 3072,
+        "pids": 512,
+        "wall_s": 1800,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "72bc32d2af5498f9035124fb64a77df317640c29536244b8725634c858037c09",
+          "runs": 5,
+          "stable": 195,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "013f29f0482e68210ae8cd12456a0b306571b593423388c58e8d0b1943d6c752",
+          "runs": 5,
+          "stable": 195,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 2,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": {
+        "replace": false,
+        "overlay_files": 1
+      }
+    },
+    {
+      "name": "pyrlp",
+      "class": "python",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/ethereum/pyrlp",
+      "commit": "ff7edeb765a539d6384daf2b66cc3cd9405265e6",
+      "image": "lineage/python:m1@sha256:4214b1a6fb3757b7d706ce9547e728b18c53df40f0bdf8ebcdef5b81335186d0",
+      "recipe_id": "44a9d38bd67e4c44c1a40f37ead7be89ded73ce2030adaf19b4993e55af2bd90",
+      "overlay_digest": "f696d798ef8b7cffd68233fd49716c03cbe1db71346591d61be19c30d8809531",
+      "overlay_files": 2,
+      "metrics": [
+        {
+          "name": "encode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "decode_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "sedes_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "rlp/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 1200,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "44a9d38bd67e4c44c1a40f37ead7be89ded73ce2030adaf19b4993e55af2bd90",
+          "runs": 5,
+          "stable": 312,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "67666d55dd35a01b32da121506a4e8f7696c8f3fb868d9e140446faa4ef09645",
+          "runs": 5,
+          "stable": 312,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "solana-config",
+      "class": "solana",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/solana-program/config",
+      "commit": "3a2712117eaebd4a30214bccf1bd9ba5365ae328",
+      "image": "lineage/solana:m1@sha256:6fea6918f9e9228d41e79f849e6d791cf64e3acbb585b0548d5f49bb46af86a1",
+      "recipe_id": "001cac1188fb00667371738ccef08909a5cfa9dab70c3f3ffc7de20924ab1b2f",
+      "overlay_digest": "df9f6f712ebfa3c8a5ed6e03e2608987cde001647c8d32356c6762c17ebef701",
+      "overlay_files": 3,
+      "metrics": [
+        {
+          "name": "init_cu",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "number"
+        },
+        {
+          "name": "store_cu",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "number"
+        },
+        {
+          "name": "so_bytes",
+          "kind": "slim",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.005,
+          "holdout": false,
+          "parser": "bytes"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "program/src/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 4,
+        "memory_mb": 4096,
+        "pids": 512,
+        "wall_s": 2400,
+        "disk_mb": 6144
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "001cac1188fb00667371738ccef08909a5cfa9dab70c3f3ffc7de20924ab1b2f",
+          "runs": 5,
+          "stable": 19,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "d4d1e6500299e12f754c63c9933e01d05d21e54c4103d26f827954cc1d0a10e4",
+          "runs": 5,
+          "stable": 19,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "spl-record",
+      "class": "solana",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/solana-program/record",
+      "commit": "14de137731dd91816eae487a5a66b89a71892418",
+      "image": "lineage/solana:m1@sha256:6fea6918f9e9228d41e79f849e6d791cf64e3acbb585b0548d5f49bb46af86a1",
+      "recipe_id": "7becca77beb53e51ebfed1fd0c2e8c7421ad2f0c5a6fce66e0ddb5c108d2051d",
+      "overlay_digest": "cf633c147d857ca40043bc5315f7dee0a6881364ee8944e045fc19508c3546e5",
+      "overlay_files": 3,
+      "metrics": [
+        {
+          "name": "write_cu",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "number"
+        },
+        {
+          "name": "admin_cu",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "number"
+        },
+        {
+          "name": "so_bytes",
+          "kind": "slim",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.005,
+          "holdout": false,
+          "parser": "bytes"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "program/src/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 4,
+        "memory_mb": 4096,
+        "pids": 512,
+        "wall_s": 2400,
+        "disk_mb": 6144
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "7becca77beb53e51ebfed1fd0c2e8c7421ad2f0c5a6fce66e0ddb5c108d2051d",
+          "runs": 5,
+          "stable": 15,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "subword-nmt",
+      "class": "python",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/rsennrich/subword-nmt",
+      "commit": "92d6139d07d30e12735a0af9e7f7f925ebe62c54",
+      "image": "lineage/python:m1@sha256:4214b1a6fb3757b7d706ce9547e728b18c53df40f0bdf8ebcdef5b81335186d0",
+      "recipe_id": "660f1420bd0a4a971a9bacc7cecf0b6fcaa61b23c48ebd1053d0a625c5d3b4b3",
+      "overlay_digest": "a93e87a876ff63464898c8303a641a3c4178435fc60d4c293b164a16a7f664c9",
+      "overlay_files": 2,
+      "metrics": [
+        {
+          "name": "apply_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "vocab_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "learn_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "subword_nmt/apply_bpe.py",
+          "subword_nmt/learn_bpe.py",
+          "subword_nmt/get_vocab.py"
+        ],
+        "max_files": 3,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 900,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "660f1420bd0a4a971a9bacc7cecf0b6fcaa61b23c48ebd1053d0a625c5d3b4b3",
+          "runs": 5,
+          "stable": 15,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "26d6b244d50818eacef1561e3bb5e411262a02a46e39a366220d9b346bf1f79e",
+          "runs": 5,
+          "stable": 15,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": null
+    },
+    {
+      "name": "zig-charm",
+      "class": "zig",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/jedisct1/zig-charm",
+      "commit": "0f28f8a669a0330b5659279a92d985b0b33d1723",
+      "image": "lineage/zig:0.15.2@sha256:d2368f0312e00beae22c24887ad0cda96f13107b1284a4a269893941171aff01",
+      "recipe_id": "836417c2fdd54065416d4d953479f6b18dae2e9d4814fd8d7fa93a8be282d2be",
+      "overlay_digest": "df8eea99049a1608a35a56773d1c8ce9c1b61608f36868fb09a3252d2fde4659",
+      "overlay_files": 6,
+      "metrics": [
+        {
+          "name": "consumer_bytes",
+          "kind": "slim",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.005,
+          "holdout": false,
+          "parser": "bytes"
+        },
+        {
+          "name": "hash_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "aead_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "src/main.zig"
+        ],
+        "max_files": 1,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 900,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "836417c2fdd54065416d4d953479f6b18dae2e9d4814fd8d7fa93a8be282d2be",
+          "runs": 5,
+          "stable": 8,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "b27d7d69160fe693d9d57a142fa8267dc1cc830d168f0a71f69844de12895651",
+          "runs": 5,
+          "stable": 8,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": {
+        "replace": true,
+        "overlay_files": 0
+      }
+    },
+    {
+      "name": "zig-clap",
+      "class": "zig",
+      "requires": {
+        "arch": "arm64"
+      },
+      "repo": "https://github.com/Hejsil/zig-clap",
+      "commit": "c499116264c348e4a98d939917b2446cad79d5fb",
+      "image": "lineage/zig:0.15.2@sha256:d2368f0312e00beae22c24887ad0cda96f13107b1284a4a269893941171aff01",
+      "recipe_id": "51de40742d5744f0ba0aba722600e4ac77cbcfdca50f4dd4c0eb458a48168a87",
+      "overlay_digest": "252fa64440970d9d275a34bca03a5526fdc2830c5bebd206762cd03c1c2029d2",
+      "overlay_files": 4,
+      "metrics": [
+        {
+          "name": "examples_bytes",
+          "kind": "slim",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.005,
+          "holdout": false,
+          "parser": "bytes"
+        },
+        {
+          "name": "parse_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        },
+        {
+          "name": "help_ir",
+          "kind": "perf",
+          "direction": "lower",
+          "deterministic": true,
+          "min_effect": 0.01,
+          "holdout": true,
+          "parser": "cachegrind-ir"
+        }
+      ],
+      "patch": {
+        "allowed_paths": [
+          "clap.zig",
+          "clap/**"
+        ],
+        "max_files": 5,
+        "max_lines": 200
+      },
+      "limits": {
+        "cpus": 2,
+        "memory_mb": 2048,
+        "pids": 256,
+        "wall_s": 900,
+        "disk_mb": 4096
+      },
+      "calibrations": {
+        "arm64": {
+          "file": "calibration.json",
+          "recipe_id": "51de40742d5744f0ba0aba722600e4ac77cbcfdca50f4dd4c0eb458a48168a87",
+          "runs": 5,
+          "stable": 27,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        },
+        "amd64": {
+          "file": "calibration-amd64.json",
+          "recipe_id": "adada2c7456e98925365959ce1086a580e2728cdacd0af5ccd9d944e7ae14ca8",
+          "runs": 5,
+          "stable": 27,
+          "known_failures": 0,
+          "quarantined": 0,
+          "metrics_enabled": 3,
+          "metrics_disabled": 0
+        }
+      },
+      "amd64_variant": {
+        "replace": true,
+        "overlay_files": 0
+      }
+    }
+  ]
+}
