@@ -14,7 +14,10 @@
 //   3. calibration.json fits schema/calibration.schema.json, belongs to this recipe id, lists no test
 //      twice, and gives a base value for every enabled deterministic metric of the recipe.
 //   4. calibration-amd64.json (where present) carries a calibration of the same shape for the same
-//      metrics, and the amd64 variant in amd64/ applies to recipe.yml and still fits the schema.
+//      metrics and says where it comes from: source "site" is the record of a live unit on mainnet
+//      and names its site and lineage_id, the same ones as recipes/index.json; source "measured" is
+//      the project's own amd64 measurement of a recipe that is not a live unit, and names neither.
+//      The amd64 variant in amd64/ applies to recipe.yml and still fits the schema.
 //   5. recipes/SOURCE.json lists exactly the files that are there, with their sha256.
 //   6. Nothing that is held back on purpose is present (see README, "What is not here").
 //   7. README.md names every recipe, and no file holds an em dash.
@@ -208,8 +211,25 @@ for (const name of dirs) {
   const amdFile = join(dir, "calibration-amd64.json");
   if (existsSync(amdFile)) {
     const w = JSON.parse(readFileSync(amdFile, "utf8")) as Record<string, any>;
-    for (const k of ["recipe_id", "lineage_id", "site", "calibration"]) if (!(k in w)) fail(`${name}/calibration-amd64.json`, `${k} is required`);
-    if (w.calibration) checkCalibration(`${name}/calibration-amd64.json`, { ...w.calibration, recipe_id: w.recipe_id }, loaded.raw, null);
+    const at = `${name}/calibration-amd64.json`;
+    for (const k of ["source", "recipe_id", "calibration"]) if (!(k in w)) fail(at, `${k} is required`);
+    const hex64 = (v: unknown) => typeof v === "string" && /^[0-9a-f]{64}$/.test(v);
+    if (!hex64(w.recipe_id)) fail(at, "recipe_id is not a 64 character hex id");
+    if (w.source === "site") {
+      // the record of a live unit: where it was read and which unit it is
+      if (w.network !== "mainnet") fail(at, "a site record must be from mainnet");
+      if (typeof w.site !== "string" || !/^https:\/\/[a-z0-9.-]+$/.test(w.site)) fail(at, "site must be the https origin the record was read from");
+      for (const k of ["lineage_id", "calib_id"]) if (!hex64(w[k])) fail(at, `${k} is required (64 character hex id)`);
+      const m = row?.mainnet;
+      if (!m || m.lineage_id !== w.lineage_id || m.recipe_id !== w.recipe_id || m.site !== w.site) fail(at, "index.json does not name the same mainnet unit");
+    } else if (w.source === "measured") {
+      for (const k of ["site", "lineage_id", "network"]) if (k in w) fail(at, `a measured calibration is not a unit's record and must not carry ${k}`);
+      if (row?.mainnet) fail(at, "index.json names a mainnet unit, but the calibration here is not its site record");
+    } else fail(at, 'source must be "site" or "measured"');
+    for (const k of Object.keys(w)) if (!["_note", "source", "network", "site", "lineage_id", "recipe_id", "calib_id", "calibrated_by", "calibration_sig", "read_at", "calibration"].includes(k)) fail(at, `${k} is not a known field`);
+    if (row && row.calibrations?.amd64?.source !== w.source) fail(at, "index.json gives another source for the amd64 calibration");
+    if (w.calibration?.recipe_id !== undefined && w.calibration.recipe_id !== w.recipe_id) fail(at, "the calibration inside is for another recipe id");
+    if (w.calibration) checkCalibration(at, { ...w.calibration, recipe_id: w.recipe_id }, loaded.raw, null);
     if (w.recipe_id === loaded.recipe_id) fail(`${name}/calibration-amd64.json`, "has the id of recipe.yml: an amd64 variant pins another image, so its id must differ");
     if (loaded.raw.requires?.arch === "amd64") fail(`${name}/calibration-amd64.json`, "recipe.yml is already amd64: its calibration is calibration.json");
     arches.push("amd64");
@@ -241,9 +261,10 @@ for (const name of dirs) {
     }
     if (!existsSync(amdFile)) fail(`${name}/amd64`, "an amd64 variant without calibration-amd64.json");
   }
+  if (row?.mainnet && !existsSync(amdFile)) fail(name, "index.json names a mainnet unit, but there is no site record (calibration-amd64.json)");
 
   const m = loaded.raw;
-  rows.push(`${name.padEnd(20)} ${String(m.class).padEnd(7)} ${arches.filter(Boolean).join("+").padEnd(12)} ${String(m.metrics.length).padStart(2)} metrics  ${loaded.recipe_id.slice(0, 12)}  ${m.repo}`);
+  rows.push(`${name.padEnd(20)} ${String(m.class).padEnd(7)} ${arches.filter(Boolean).join("+").padEnd(12)} ${(row?.mainnet ? "mainnet" : "").padEnd(8)} ${String(m.metrics.length).padStart(2)} metrics  ${loaded.recipe_id.slice(0, 12)}  ${m.repo}`);
 }
 for (const r of index.recipes) if (!dirs.includes(r.name)) fail("recipes/index.json", `names ${r.name}, which has no directory`);
 
@@ -262,7 +283,7 @@ if (!/^[0-9a-f]{40}$/.test(source.source_commit)) fail("recipes/SOURCE.json", "s
 const readme = readFileSync(join(ROOT, "README.md"), "utf8");
 for (const name of dirs) if (!readme.includes("`" + name + "`")) fail("README.md", `does not name the recipe ${name}`);
 const EM_DASH = String.fromCharCode(0x2014);
-for (const p of [...walk(RECIPES), join(ROOT, "README.md"), join(ROOT, "CLAUDE.md"), ...walk(join(ROOT, "schema")), ...walk(join(ROOT, "scripts"))]) {
+for (const p of [...walk(RECIPES), join(ROOT, "README.md"), join(ROOT, "LICENSE"), ...walk(join(ROOT, "schema")), ...walk(join(ROOT, "scripts"))]) {
   if (!existsSync(p) || !statSync(p).isFile()) continue;
   const b = readFileSync(p);
   if (!b.includes(0) && b.toString("utf8").includes(EM_DASH)) fail(relative(ROOT, p), "holds an em dash");

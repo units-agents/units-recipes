@@ -1,33 +1,11 @@
 {
-  "_note": "amd64 calibration of the live site after the geth-rlp harness fix (c0863b2): recalibrated by the site's reference runner; the previous lineage e12b944d7344 is retired",
-  "site": "https://157-245-71-188.sslip.io",
-  "lineage_id": "132701de2125efe267d069285344611554f4149f57958d1eb402903019acf795",
+  "_note": "amd64 calibration measured by the units project on an amd64 server, with the recipe pinned to that server's build of its image. This recipe is not a live unit on mainnet. A site that starts serving it calibrates it again with its own seed, and that record (source site, with the unit's lineage_id) then replaces this file.",
+  "source": "measured",
   "recipe_id": "6b3484b89dd34fc99e548f021912d0a1c406e1cd553227fc2ae54f8141e84957",
   "calibration": {
-    "known_failures": [],
-    "median_eval_seconds": 1394,
-    "metrics": {
-      "decode_ir": {
-        "base_value": 127735616,
-        "cv": 3.5184945608448756e-05,
-        "enabled": true
-      },
-      "encode_ir": {
-        "base_value": 43550384,
-        "cv": 0,
-        "enabled": true
-      },
-      "stream_ir": {
-        "base_value": 140349098,
-        "cv": 1.5719183013930222e-06,
-        "enabled": true
-      }
-    },
-    "quarantined": [],
     "recipe_id": "6b3484b89dd34fc99e548f021912d0a1c406e1cd553227fc2ae54f8141e84957",
-    "runs": 5,
-    "seed": "89b3c70d217013cdf172e94c292b155e6215bad939b26f1d60ca2d12a8270b68",
     "snapshot_id": "1d5faaf4be0abf243944976eaf611a0ef3f64928f0d93731b00ea4bae2c59807",
+    "runs": 5,
     "stable": [
       "github.com/ethereum/go-ethereum/rlp/rlpgen::TestOutput/bigint",
       "github.com/ethereum/go-ethereum/rlp/rlpgen::TestOutput/nil",
@@ -137,6 +115,27 @@
       "github.com/ethereum/go-ethereum/rlp::TestStreamReadBytes/input_820102/size_2",
       "github.com/ethereum/go-ethereum/rlp::TestStreamReadBytes/input_820102/size_3",
       "github.com/ethereum/go-ethereum/rlp::TestStreamReadBytes/input_C0/size_1"
-    ]
+    ],
+    "known_failures": [],
+    "quarantined": [],
+    "metrics": {
+      "decode_ir": {
+        "base_value": 127735616,
+        "cv": 0.000035184945608448756,
+        "enabled": true
+      },
+      "encode_ir": {
+        "base_value": 43550384,
+        "cv": 0,
+        "enabled": true
+      },
+      "stream_ir": {
+        "base_value": 140349098,
+        "cv": 0.0000015719183013930222,
+        "enabled": true
+      }
+    },
+    "median_eval_seconds": 1394,
+    "seed": "89b3c70d217013cdf172e94c292b155e6215bad939b26f1d60ca2d12a8270b68"
   }
 }

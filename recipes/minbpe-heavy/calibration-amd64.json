@@ -1,11 +1,20 @@
 {
-  "_note": "amd64 calibration of the public devnet site (157.245.71.188, DigitalOcean 4 vCPU / 8 GB), as Core recorded it; read from GET /v1/lineages/:id on 2026-10-12. The committed calibration.json is the arm64 (Apple M4) one.",
+  "_note": "The calibration the units mainnet site recorded for the unit of this recipe, as its Core serves it: GET https://app.units.gg/v1/lineages/ec763487aa4bc47f8be69946e4197ab01c96eadde5f127aa8ea13dece9701fd2 (fields calibration, calib_id, calibration_by, calibration_sig), read on 2026-10-13. It is the baseline a verifier reproduces to qualify for the unit. Written by scripts/public/site-calibrations.ts; not edited by hand.",
+  "source": "site",
+  "network": "mainnet",
+  "site": "https://app.units.gg",
+  "lineage_id": "ec763487aa4bc47f8be69946e4197ab01c96eadde5f127aa8ea13dece9701fd2",
+  "recipe_id": "fb2924fcdae9d18ee10bf673be7e3c28082ee4b6db451980d7b891c135ef355e",
+  "calib_id": "ff44a1627d11aa02d92ae75dc96f6d8cd59eb2e26881dd00ecf1cb28771d746c",
+  "calibrated_by": "3usYPowhwA2ZwZ6afdxZbjAB73YsZtQugurfQ8MKoeb8",
+  "calibration_sig": "4isFohzMZFE9ki4cz1Y7HsFssup95sojpUHCVNvvuFkDbX49hh5Ntghvdn6BJ3QZjvnbroBufUzcpdHYeaiKDZKE",
+  "read_at": "2026-10-13",
   "calibration": {
     "known_failures": [],
-    "median_eval_seconds": 195,
+    "median_eval_seconds": 282,
     "metrics": {
       "decode_ir": {
-        "base_value": 3963877943,
+        "base_value": 3963877937,
         "cv": 0,
         "enabled": true
       },
@@ -16,17 +25,17 @@
       },
       "save_load_ir": {
         "base_value": 4044345833,
-        "cv": 2.4477370000943895e-09,
+        "cv": 1.0490301428975955e-9,
         "enabled": true
       },
       "train_basic_ir": {
-        "base_value": 4140308467,
-        "cv": 0,
+        "base_value": 4140308464,
+        "cv": 1.024716086738238e-9,
         "enabled": true
       },
       "train_regex_ir": {
-        "base_value": 6759444923,
-        "cv": 6.276611075982111e-10,
+        "base_value": 6759444926,
+        "cv": 0,
         "enabled": true
       }
     },
@@ -58,8 +67,5 @@
       "tests.test_tokenizer::test_wikipedia_example[BasicTokenizer]",
       "tests.test_tokenizer::test_wikipedia_example[RegexTokenizer]"
     ]
-  },
-  "lineage_id": "ec763487aa4bc47f8be69946e4197ab01c96eadde5f127aa8ea13dece9701fd2",
-  "recipe_id": "fb2924fcdae9d18ee10bf673be7e3c28082ee4b6db451980d7b891c135ef355e",
-  "site": "https://157-245-71-188.sslip.io"
+  }
 }

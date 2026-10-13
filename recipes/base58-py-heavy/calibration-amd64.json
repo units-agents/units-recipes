@@ -1,8 +1,17 @@
 {
-  "_note": "amd64 calibration of the public devnet site (157.245.71.188, DigitalOcean 4 vCPU / 8 GB), as Core recorded it; read from GET /v1/lineages/:id on 2026-10-12. The committed calibration.json is the arm64 (Apple M4) one.",
+  "_note": "The calibration the units mainnet site recorded for the unit of this recipe, as its Core serves it: GET https://app.units.gg/v1/lineages/ead44fad56d52022f33c3db0269cfd4746a293e74e73c11739982ad72df2f0a8 (fields calibration, calib_id, calibration_by, calibration_sig), read on 2026-10-13. It is the baseline a verifier reproduces to qualify for the unit. Written by scripts/public/site-calibrations.ts; not edited by hand.",
+  "source": "site",
+  "network": "mainnet",
+  "site": "https://app.units.gg",
+  "lineage_id": "ead44fad56d52022f33c3db0269cfd4746a293e74e73c11739982ad72df2f0a8",
+  "recipe_id": "9394c130bb06cdefb8d6cfd8f3853698ccad044a19a343153d43f355e12f232f",
+  "calib_id": "3ba463e3ff1f7d68230da0af35b791af140d9ee579f95f62b46ec6c4f2922ec3",
+  "calibrated_by": "3usYPowhwA2ZwZ6afdxZbjAB73YsZtQugurfQ8MKoeb8",
+  "calibration_sig": "5ywT6gCR2EHUoxZGVcQbxgRQJ6tkM2odqUqHdrcXnTXeQnoFy96zkKzQa3z83x2p9nEAr3M5UJP2Z1wuVfMLjAqV",
+  "read_at": "2026-10-13",
   "calibration": {
     "known_failures": [],
-    "median_eval_seconds": 112,
+    "median_eval_seconds": 156,
     "metrics": {
       "check_ir": {
         "base_value": 3144917542,
@@ -10,13 +19,13 @@
         "enabled": true
       },
       "decode_ir": {
-        "base_value": 3432416580,
-        "cv": 1.2360506332011964e-09,
+        "base_value": 3432416583,
+        "cv": 0,
         "enabled": true
       },
       "decode_long_ir": {
-        "base_value": 6217274572,
-        "cv": 0,
+        "base_value": 6217274569,
+        "cv": 6.823955802553015e-10,
         "enabled": true
       },
       "encode_ir": {
@@ -25,8 +34,8 @@
         "enabled": true
       },
       "encode_long_ir": {
-        "base_value": 2764449121,
-        "cv": 0,
+        "base_value": 2764449124,
+        "cv": 1.5347146924449186e-9,
         "enabled": true
       },
       "int_ir": {
@@ -90,8 +99,5 @@
       "test_base58::test_simple_integers[123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz]",
       "test_base58::test_simple_integers[rpshnaf39wBUDNEGHJKLM4PQRST7VWXYZ2bcdeCg65jkm8oFqi1tuvAxyz]"
     ]
-  },
-  "lineage_id": "ead44fad56d52022f33c3db0269cfd4746a293e74e73c11739982ad72df2f0a8",
-  "recipe_id": "9394c130bb06cdefb8d6cfd8f3853698ccad044a19a343153d43f355e12f232f",
-  "site": "https://157-245-71-188.sslip.io"
+  }
 }

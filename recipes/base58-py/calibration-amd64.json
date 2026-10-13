@@ -1,11 +1,17 @@
 {
-  "_note": "amd64 calibration of the public devnet site (157.245.71.188, DigitalOcean 4 vCPU / 8 GB), as Core recorded it; read from GET /v1/lineages/:id on 2026-10-08. The committed calibration.json is the arm64 (Apple M4) one.",
-  "site": "https://157-245-71-188.sslip.io",
+  "_note": "The calibration the units mainnet site recorded for the unit of this recipe, as its Core serves it: GET https://app.units.gg/v1/lineages/c12109ca42d955b0bbc7e2a3ffbf5ebacd3141687da6b1ed6d814327ef9af1d8 (fields calibration, calib_id, calibration_by, calibration_sig), read on 2026-10-13. It is the baseline a verifier reproduces to qualify for the unit. Written by scripts/public/site-calibrations.ts; not edited by hand.",
+  "source": "site",
+  "network": "mainnet",
+  "site": "https://app.units.gg",
   "lineage_id": "c12109ca42d955b0bbc7e2a3ffbf5ebacd3141687da6b1ed6d814327ef9af1d8",
   "recipe_id": "d8d4daba3946c56307132a81812f18ecaf374566247e49903b99c89ceca3a41f",
+  "calib_id": "4238b6c71d6f20a1b904e9efbbcec371a961d6cb618fa26d0e0a517872ba5e4e",
+  "calibrated_by": "3usYPowhwA2ZwZ6afdxZbjAB73YsZtQugurfQ8MKoeb8",
+  "calibration_sig": "4vvAdoLNRawTYCZnvLvu3sPkxV3CS3GA7cMpBF7YUP8Bg2kV79XNbL7gAfqVVxEYwLSQS5VHhgAgeKKdGYYe1hBn",
+  "read_at": "2026-10-13",
   "calibration": {
     "known_failures": [],
-    "median_eval_seconds": 19,
+    "median_eval_seconds": 30,
     "metrics": {
       "check_ir": {
         "base_value": 299111271,
@@ -18,8 +24,8 @@
         "enabled": true
       },
       "encode_ir": {
-        "base_value": 478799544,
-        "cv": 0,
+        "base_value": 478799541,
+        "cv": 8.860995727477702e-9,
         "enabled": true
       }
     },

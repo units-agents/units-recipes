@@ -1,0 +1,38 @@
+{
+  "_note": "amd64 calibration measured by the units project on an amd64 server, with the recipe pinned to that server's build of its image. This recipe is not a live unit on mainnet. A site that starts serving it calibrates it again with its own seed, and that record (source site, with the unit's lineage_id) then replaces this file.",
+  "source": "measured",
+  "recipe_id": "656eb8d20d4696664f7feb7a2d6706e81f89c1f122aee1e1437032068dcbc71c",
+  "calibration": {
+    "recipe_id": "656eb8d20d4696664f7feb7a2d6706e81f89c1f122aee1e1437032068dcbc71c",
+    "snapshot_id": "",
+    "runs": 5,
+    "stable": [
+      "tests.TestSegwitAddress::test_invalid_address",
+      "tests.TestSegwitAddress::test_invalid_address_enc",
+      "tests.TestSegwitAddress::test_invalid_checksum",
+      "tests.TestSegwitAddress::test_valid_address",
+      "tests.TestSegwitAddress::test_valid_checksum"
+    ],
+    "known_failures": [],
+    "quarantined": [],
+    "metrics": {
+      "encode_ir": {
+        "enabled": true,
+        "cv": 0,
+        "base_value": 951710343
+      },
+      "decode_ir": {
+        "enabled": true,
+        "cv": 0,
+        "base_value": 1784714884
+      },
+      "bech32_ir": {
+        "enabled": true,
+        "cv": 5.044716090021867e-9,
+        "base_value": 841006830
+      }
+    },
+    "median_eval_seconds": 12,
+    "seed": "ca11b7a7e"
+  }
+}
